@@ -1,0 +1,35 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ignore virtualenvs
+.venv/
+env/
+ENV/
+venv/
+
+# Ignore development artifacts
+*.log
+*.sqlite3
+*.db
+
+# Ignore Docker artifacts
+Dockerfile
+.dockerignore
+
+# Ignore git and IDE files
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore tests and coverage (optional)
+htmlcov/
+.coverage
+.tox/
+.pytest_cache/
