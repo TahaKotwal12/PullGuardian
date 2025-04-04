@@ -29,7 +29,3 @@ Whether you're a startup, enterprise team, or open-source contributor, CodeSenti
 - 🖥️ **Beautiful dashboard** for review history & reports
 - ⚙️ **Custom rule definitions** & audit policies
 
----
-
-## 🧱 Architecture
-
