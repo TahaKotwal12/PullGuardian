@@ -1,12 +1,12 @@
-# CodeSentinel
+# PullGuardian
 
 ### 🔍 AI-Powered Code Review & Security Audit Tool
 
-**CodeSentinel** is an open-source, AI-powered platform designed to automate and elevate code quality and security audits. It seamlessly integrates into your GitHub/GitLab workflows and CI/CD pipelines to catch issues before they hit production.
+**PullGuardian** is an open-source, AI-powered platform designed to automate and elevate code quality and security audits. It seamlessly integrates into your GitHub/GitLab workflows and CI/CD pipelines to catch issues before they hit production.
 
 ---
 
-## 🚀 Why CodeSentinel?
+## 🚀 Why PullGuardian?
 
 Modern development moves fast — but security and quality can’t be afterthoughts. CodeSentinel uses AI to:
 
@@ -35,7 +35,7 @@ Whether you're a startup, enterprise team, or open-source contributor, CodeSenti
 ## ⚙️ Tech Stack
 
 - **Backend**: Python, FastAPI, CodeQL, OpenAI, CodeBERT
-- **Frontend**: React.js + TailwindCSS + shadcn
+- **Frontend**: React + TailwindCSS + shadcn + solid + VUE
 - **Database**: PostgreSQL (metadata), ClickHouse (logs & analytics)
 - **DevOps**: Docker, GitHub Actions, Prometheus + Grafana
 
