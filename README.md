@@ -35,7 +35,7 @@ Whether you're a startup, enterprise team, or open-source contributor, CodeSenti
 ## ⚙️ Tech Stack
 
 - **Backend**: Python, FastAPI, CodeQL, OpenAI, CodeBERT
-- **Frontend**: React.js + TailwindCSS
+- **Frontend**: React.js + TailwindCSS + shadcn
 - **Database**: PostgreSQL (metadata), ClickHouse (logs & analytics)
 - **DevOps**: Docker, GitHub Actions, Prometheus + Grafana
 
