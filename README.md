@@ -29,3 +29,22 @@ Whether you're a startup, enterprise team, or open-source contributor, CodeSenti
 - 🖥️ **Beautiful dashboard** for review history & reports
 - ⚙️ **Custom rule definitions** & audit policies
 
+
+---
+
+## ⚙️ Tech Stack
+
+- **Backend**: Python, FastAPI, CodeQL, OpenAI, CodeBERT
+- **Frontend**: React.js + TailwindCSS
+- **Database**: PostgreSQL (metadata), ClickHouse (logs & analytics)
+- **DevOps**: Docker, GitHub Actions, Prometheus + Grafana
+
+---
+
+## 📦 Installation
+
+### Prerequisites:
+- Docker + Docker Compose
+- Python 3.9+
+- Node.js 18+
+
