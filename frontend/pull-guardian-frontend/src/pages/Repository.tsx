@@ -1,71 +1,25 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
+// import { useQuery } from '@tanstack/react-query';
+import { repositoryAPI } from '../lib/api';
+import { CodeDiffViewer } from '../components/CodeDiffViewer';
 import { Repository as RepositoryType, SecurityIssue } from '../types';
 
 const Repository: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   
-  // Mock repository data
-  const repository: RepositoryType = {
-    id: id || '1',
-    name: 'backend-api',
-    owner: 'acme-org',
-    description: 'Core API services for the ACME platform',
-    securityScore: 78,
-    lastScan: '2025-04-03T14:15:00Z',
-    issues: 5,
-    vulnerabilities: 2
-  };
-  
-  // Mock security issues
-  const securityIssues: SecurityIssue[] = [
-    {
-      id: '1',
-      title: 'Insecure Direct Object Reference',
-      description: 'API endpoints are vulnerable to IDOR attacks, allowing unauthorized access to resources.',
-      severity: 'high',
-      file: 'src/controllers/user.controller.js',
-      line: 42,
-      status: 'open'
-    },
-    {
-      id: '2',
-      title: 'SQL Injection Vulnerability',
-      description: 'User input is not properly sanitized before being used in SQL queries.',
-      severity: 'critical',
-      file: 'src/services/data.service.js',
-      line: 87,
-      status: 'open'
-    },
-    {
-      id: '3',
-      title: 'Weak Password Policy',
-      description: 'Password requirements do not enforce sufficient complexity.',
-      severity: 'medium',
-      file: 'src/utils/validation.js',
-      line: 23,
-      status: 'resolved'
-    },
-    {
-      id: '4',
-      title: 'Missing Rate Limiting',
-      description: 'API endpoints do not implement rate limiting, making them vulnerable to brute force attacks.',
-      severity: 'medium',
-      file: 'src/middleware/auth.middleware.js',
-      line: 15,
-      status: 'open'
-    },
-    {
-      id: '5',
-      title: 'Outdated Dependencies',
-      description: 'Several npm packages have known vulnerabilities and need to be updated.',
-      severity: 'low',
-      file: 'package.json',
-      line: 10,
-      status: 'open'
-    }
-  ];
-  
+  const { data: repository, isLoading } = useQuery({
+    queryKey: ['repository', id],
+    queryFn: () => repositoryAPI.getRepository(id!),
+  });
+
+  const { data: securityIssues } = useQuery({
+    queryKey: ['security-issues', id],
+    queryFn: () => repositoryAPI.getSecurityIssues(id!),
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+
   // Mock pull requests
   const pullRequests = [
     {
@@ -145,8 +99,8 @@ const Repository: React.FC = () => {
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{repository.name}</h1>
-          <p className="text-gray-500">{repository.owner} / {repository.description}</p>
+          <h1 className="text-2xl font-bold text-gray-900">{repository?.name}</h1>
+          <p className="text-gray-500">{repository?.owner} / {repository?.description}</p>
         </div>
         <div className="flex space-x-4">
           <button className="px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -169,23 +123,23 @@ const Repository: React.FC = () => {
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 md:grid-cols-4">
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">Security Score</dt>
-              <dd className={`mt-1 text-3xl font-semibold ${getScoreColor(repository.securityScore)}`}>
-                {repository.securityScore}%
+              <dd className={`mt-1 text-3xl font-semibold ${getScoreColor(repository?.securityScore)}`}>
+                {repository?.securityScore}%
               </dd>
             </div>
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">Last Scan</dt>
               <dd className="mt-1 text-sm text-gray-900">
-                {repository.lastScan ? formatDate(repository.lastScan) : 'Never'}
+                {repository?.lastScan ? formatDate(repository.lastScan) : 'Never'}
               </dd>
             </div>
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">Open Issues</dt>
-              <dd className="mt-1 text-sm text-gray-900">{repository.issues}</dd>
+              <dd className="mt-1 text-sm text-gray-900">{repository?.issues}</dd>
             </div>
             <div className="sm:col-span-1">
               <dt className="text-sm font-medium text-gray-500">Vulnerabilities</dt>
-              <dd className="mt-1 text-sm text-gray-900">{repository.vulnerabilities}</dd>
+              <dd className="mt-1 text-sm text-gray-900">{repository?.vulnerabilities}</dd>
             </div>
           </dl>
         </div>
@@ -214,7 +168,7 @@ const Repository: React.FC = () => {
         
         <div className="bg-white shadow overflow-hidden rounded-lg">
           <ul className="divide-y divide-gray-200">
-            {securityIssues.map((issue) => (
+            {securityIssues?.map((issue) => (
               <li key={issue.id} className="px-4 py-4 sm:px-6 hover:bg-gray-50">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
